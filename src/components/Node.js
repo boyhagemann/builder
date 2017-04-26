@@ -4,12 +4,15 @@ import Element from './Element'
 import Text from './Text'
 import Data from './Data'
 import Condition from './Condition'
-import nodes from '../data/nodes'
 import replace from '../helpers/replace'
 
 export default ({id, context = {} }) => {
 
-    const node = nodes.find( node => node._id === id)
+    if(!context.nodes) {
+      console.error('No nodes data in context')
+    }
+
+    const node = context.nodes.find( node => node._id === id)
 
     const { _id, _type, ...unprocessed } = node
 

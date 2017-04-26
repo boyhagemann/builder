@@ -12,6 +12,7 @@ export default [
       "data-collection",
       "data-collection-with-placeholders",
       "simple-condition",
+      "simple-click",
     ],
   },
 
@@ -128,5 +129,29 @@ export default [
     _id: "simple-condition.reject",
     _type: "Text",
     text: "This should NOT be visible",
+  },
+
+  // Simple click
+  {
+    _id: "simple-click",
+    _type: "Element",
+    element: "div",
+    style: { padding: "10px"},
+    children: ["simple-click.text"],
+    actions: ["simple-click.click"],
+  },
+  {
+    _id: "simple-click.text",
+    _type: "Text",
+    text: "Click me and check console log",
+  },
+  {
+    _id: "simple-click.click",
+    _type: "Action",
+    on: "click",
+    action: "log",
+    payload: {
+      message: "Hey it works!!"
+    }
   },
 ]

@@ -1,4 +1,6 @@
 import React from 'react'
 import Node from './components/Node'
 
-export default () => <Node id="all" />
+import nodes from './data/nodes'
+
+export default () => <Node id="all" context={{ nodes }} />
