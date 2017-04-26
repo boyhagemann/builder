@@ -12,7 +12,7 @@ export default [
       "data-collection",
       "data-collection-with-placeholders",
       "simple-condition",
-      "simple-click",
+      "simple-events",
     ],
   },
 
@@ -131,27 +131,45 @@ export default [
     text: "This should NOT be visible",
   },
 
-  // Simple click
+  // Simple events
   {
-    _id: "simple-click",
+    _id: "simple-events",
     _type: "Element",
     element: "div",
-    style: { padding: "10px"},
-    children: ["simple-click.text"],
-    actions: ["simple-click.click"],
+    style: { padding: "10px", background: "#ddd", },
+    children: ["simple-events.text"],
+    actions: ["simple-events.click", "simple-events.mouseenter", "simple-events.mouseleave" ],
   },
   {
-    _id: "simple-click.text",
+    _id: "simple-events.text",
     _type: "Text",
     text: "Click me and check console log",
   },
   {
-    _id: "simple-click.click",
+    _id: "simple-events.click",
     _type: "Action",
-    on: "click",
+    event: "onClick",
     action: "log",
     payload: {
-      message: "Hey it works!!"
+      message: "Clicked!!!"
+    }
+  },
+  {
+    _id: "simple-events.mouseenter",
+    _type: "Action",
+    event: "onMousEnter",
+    action: "log",
+    payload: {
+      message: "Mouse enter!!!"
+    }
+  },
+  {
+    _id: "simple-events.mouseleave",
+    _type: "Action",
+    event: "onMouseLeave",
+    action: "log",
+    payload: {
+      message: "Mouse leave!!!"
     }
   },
 ]

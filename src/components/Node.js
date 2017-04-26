@@ -14,6 +14,9 @@ export default ({id, context = {} }) => {
 
     const node = context.nodes.find( node => node._id === id)
 
+    if(!node) {
+      console.error('Node not found: ' + id)
+    }
     const { _id, _type, ...unprocessed } = node
 
     const props = replace(unprocessed, context)
