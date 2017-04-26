@@ -3,32 +3,16 @@ import { fromJS } from 'immutable'
 export default (object, values) => {
 
   const pattern = /{[\w.?]+}/gi
-
-  let string = JSON.stringify(object)
-
+  const string = JSON.stringify(object)
   const matches = string.match(pattern) || []
-
-  matches.forEach(match => {
+  const replaced = matches.reduce( (string, match) => {
 
     const key = match.match(/[\w.?]+/i)[0]
-
     const value = fromJS(values).getIn(key.split('.'))
 
-    if(value) {
+    return value ? string.replace(match, value) : string
 
-      // if(typeof(value) === 'string') {
-      //   string = string.replace(match, value)
-      // }
-      // else {
-        // string = string.replace(match, JSON.stringify(value))
-        string = string.replace(match, value)
-      // }
+  }, string)
 
-      // console.log(string)
-
-    }
-
-  })
-
-  return JSON.parse(string)
+  return JSON.parse(replaced)
 }

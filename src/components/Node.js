@@ -10,13 +10,16 @@ export default ({id, context = {} }) => {
 
     if(!context.nodes) {
       console.error('No nodes data in context')
+      return null
     }
 
     const node = context.nodes.find( node => node._id === id)
 
     if(!node) {
       console.error('Node not found: ' + id)
+      return null
     }
+
     const { _id, _type, ...unprocessed } = node
 
     const props = replace(unprocessed, context)
